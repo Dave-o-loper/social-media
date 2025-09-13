@@ -170,7 +170,7 @@
 
 @media screen and (max-width: 480px) {
   .social__icons {
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;
     gap: 12px;
   }
@@ -247,3 +247,4 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
+
