@@ -19,7 +19,7 @@
 }
 
 .socials h2 {
-  margin-bottom: 40px; /* space between heading and icons */
+  margin-bottom: 80px; /* space between heading and icons */
   color: #fff;
   font-family: 'Gabriela', sans-serif;
 }
@@ -247,5 +247,6 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
+
 
 
