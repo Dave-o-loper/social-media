@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabriela&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container */
+.socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background: #111; /* optional dark bg for neon vibes */
+}
+
+.socials h2 {
+  margin-bottom: 40px; /* space between heading and icons */
+  color: #fff;
+  font-family: 'Gabriela', sans-serif;
+}
+
+.social__icons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+/* Tooltip */
+.icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.icon::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: black;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.icon:hover::after,
+.icon:hover::before {
+  opacity: 1;
+}
+
+/* Brand styles */
+.whatsapp {
+  background: #25d366;
+  color: white;
+}
+.whatsapp::after { content: "WhatsApp"; background: #25d366; }
+.whatsapp::before { border-top-color: #25d366; }
+
+.instagram {
+  background: radial-gradient(circle at 30% 30%, #fdf497 0%, #fd5949 30%, #d6249f 60%, #285AEB 100%);
+  color: white;
+}
+.instagram::after { content: "Instagram"; background: #dd2a7b; }
+.instagram::before { border-top-color: #dd2a7b; }
+
+.facebook {
+  background: #1877f2;
+  color: white;
+}
+.facebook::after { content: "Facebook"; background: #1877f2; }
+.facebook::before { border-top-color: #1877f2; }
+
+.tiktok {
+  background: #000000;
+  color: white;
+}
+.tiktok::after { content: "Tiktok"; background: #000000; }
+.tiktok::before { border-top-color: #000000; }
+
+.whatsapp::after,
+.instagram::after,
+.facebook::after,
+.tiktok::after {
+  font-family: 'Gabriela', sans-serif;
+}
+
+/* Glow */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 5px var(--color1), 0 0 10px var(--color2); }
+  50%  { box-shadow: 0 0 20px var(--color1), 0 0 40px var(--color2), 0 0 60px var(--color1); }
+  100% { box-shadow: 0 0 5px var(--color1), 0 0 10px var(--color2); }
+}
+
+/* Tooltip Glow */
+@keyframes tooltipGlow {
+  0%   { text-shadow: 0 0 3px var(--color1), 0 0 6px var(--color2); }
+  50%  { text-shadow: 0 0 8px var(--color1), 0 0 16px var(--color2); }
+  100% { text-shadow: 0 0 3px var(--color1), 0 0 6px var(--color2); }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* --- Desktop hover --- */
+@media screen and (min-width: 1025px) {
+  .icon:hover {
+    animation: bounce 1.7s infinite, pulseGlow 1.7s infinite;
+  }
+  .icon:hover::after,
+  .icon:hover::before {
+    animation: tooltipGlow 1.7s infinite;
+  }
+}
+
+/* --- Mobile & Tablet auto animations --- */
+@media screen and (max-width: 1024px) {
+  .icon {
+    animation: bounce 2s infinite ease-in-out, pulseGlow 3s infinite ease-in-out;
+  }
+  .icon::after,
+  .icon::before {
+    opacity: 1; /* tooltips always visible */
+    animation: tooltipGlow 3s infinite ease-in-out;
+  }
+}
+
+/* Responsive sizing */
+@media screen and (max-width: 768px) {
+  .icon {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+  .icon::after { font-size: 12px; }
+}
+
+@media screen and (max-width: 480px) {
+  .social__icons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .icon {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  .icon::after { font-size: 11px; }
+}
+
+
+/* =========================================
+   DESKTOP EFFECTS (hover only)
+========================================= */
+.whatsapp:hover {
+  background: #128C7E;
+  --color1: #25D366;
+  --color2: #128C7E;
+  animation: pulseGlow 1.5s infinite, bounce 1.7s infinite;
+}
+
+.instagram:hover {
+  background: radial-gradient(circle at 30% 30%, #fd5949, #d6249f, #285AEB, #fdf497);
+  --color1: #fd5949;
+  --color2: #d6249f;
+  animation: pulseGlow 2s infinite, bounce 1.7s infinite;
+}
+
+.facebook:hover {
+  background: #145DBF;
+  --color1: #1877F2;
+  --color2: #145DBF;
+  animation: pulseGlow 1.8s infinite, bounce 1.7s infinite;
+}
+
+.tiktok:hover {
+  background: linear-gradient(135deg, #25F4EE 0%, #FE2C55 100%);
+  --color1: #25F4EE;
+  --color2: #FE2C55;
+  animation: pulseGlow 2s infinite, bounce 1.7s infinite;
+}
+
+.icon:hover::after,
+.icon:hover::before {
+  animation: tooltipGlow 1.5s infinite;
+}
+
+/* =========================================
+   MOBILE & TABLET (automatic bounce)
+========================================= */
+@media screen and (max-width: 1024px) {
+  .icon {
+    animation: bounce 2s infinite ease-in-out;
+  }
+}
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 5px var(--color1), 0 0 10px var(--color2); }
+  50%  { box-shadow: 0 0 20px var(--color1), 0 0 40px var(--color2), 0 0 60px var(--color1); }
+  100% { box-shadow: 0 0 5px var(--color1), 0 0 10px var(--color2); }
+}
+
+@keyframes tooltipGlow {
+  0%   { text-shadow: 0 0 3px var(--color1), 0 0 6px var(--color2); }
+  50%  { text-shadow: 0 0 8px var(--color1), 0 0 16px var(--color2); }
+  100% { text-shadow: 0 0 3px var(--color1), 0 0 6px var(--color2); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
